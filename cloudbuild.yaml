@@ -1,0 +1,15 @@
+steps:
+  # Step 1: Clone the repository from GitHub
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['clone', 'https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO.git']
+
+  # Step 2: Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/your-image-name:latest', '.']
+
+  # Step 3: Push the Docker image to Google Container Registry (GCR)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/your-image-name:latest']
+
+images:
+  - 'gcr.io/$PROJECT_ID/your-image-name:latest'
